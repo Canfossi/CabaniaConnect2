@@ -1,0 +1,7 @@
+{
+  "name": "CabaniaConnect2",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

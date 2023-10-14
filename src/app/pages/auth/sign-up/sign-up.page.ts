@@ -37,8 +37,11 @@ export class SignUpPage implements OnInit {
       await this.firebaseSvc.updateUser(this.form.value.name);
 
       let uid=res.user.uid;
-      this.form.controls.uid.setValue
-      console.log(res);
+      this.form.controls.uid.setValue(uid);
+
+      this.setUserInfo(uid)
+
+      
 
     }).catch(error=>{
       console.log(error)

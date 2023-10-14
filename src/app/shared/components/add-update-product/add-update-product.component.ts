@@ -23,11 +23,23 @@ export class AddUpdateProductComponent  implements OnInit {
 firebaseSvc = inject (FirebaseService);
 utilsSvc=inject(UtilsService)
 
+user={} as User;
+
 ngOnInit() {
+  this.user=this.utilsSvc.getFromLocalStorage('user');
 }
 
 
+//==================tomar/seleccionar imagen========================
+async takeImage(){
+const DataUrl=(await this.utilsSvc.takePicture('imagen del producto')).dataUrl;
+this.form.controls.image.setValue(DataUrl);
+
+}
+
 async submit(){
+
+  let path=`users/${this.user.uid}/`
 
   if (this.form.valid) {
 

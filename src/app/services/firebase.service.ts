@@ -1,9 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import{AngularFireAuth}from '@angular/fire/compat/auth';
-import{getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword,updateProfile}from'firebase/auth';
+import{getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword,updateProfile,sendPasswordResetEmail}from'firebase/auth';
 import { User } from '../models/user.mode';
 import{ AngularFirestore }from '@angular/fire/compat/firestore';
 import{getFirestore,setDoc,doc,getDoc}from '@angular/fire/firestore';
+import { UtilsService } from './utils.service';
 
 
 @Injectable({
@@ -12,9 +13,14 @@ import{getFirestore,setDoc,doc,getDoc}from '@angular/fire/firestore';
 export class FirebaseService {
 
   auth = inject(AngularFireAuth);
-  firestore=inject(AngularFirestore)
+  firestore=inject(AngularFirestore);
+  utilsSvc=inject(UtilsService);
+
   //===================autenticacion=============================
 
+  getAuth(){
+    return getAuth();
+  }
 
   //=============acceder====================
    signIn(user:User){
@@ -27,10 +33,25 @@ export class FirebaseService {
     return createUserWithEmailAndPassword(getAuth(),user.email,user.password)
 
    }
-//=============actulizar usuario====================
+//=============actualizar usuario====================
+
    updateUser(displayName:string){
     return updateProfile(getAuth().currentUser,{displayName})
 
+   }
+
+   //=============enviar email para restablecer contraseña====================
+   sendRecoveryEmail(email:string){
+    return sendPasswordResetEmail(getAuth(),email)
+
+   }
+
+  //===============cerrar sesion=====================
+   signOut(){
+
+      getAuth().signOut();
+      localStorage.removeItem('user')
+      this.utilsSvc.routeLink('/auth');
    }
 
 
@@ -42,7 +63,7 @@ export class FirebaseService {
 
    //===========obtener un documento================
    async getDocument(path:string){
-    return await getDoc(doc(getFirestore(),path));
+    return (await getDoc(doc(getFirestore(),path))).data();
 
    }
 }

@@ -4,7 +4,8 @@
 <div class="d-flex-center">
 
   <form [formGroup]="form" class="auth-form "(ngSubmit)="submit()"(keypress.enter)="submit">
-
+<!--============================email======================================================-->
+    
     <app-logo></app-logo>
 
     <app-custom-input  
@@ -21,7 +22,9 @@
     <div *ngIf="form.controls.email.errors?.['email']">ingrese un correo valido</div>
 
   </div>
+<!--============================password======================================================-->
 
+  
   <app-custom-input  
   [control]="form.controls.password"
   icon="lock-closed-outline"

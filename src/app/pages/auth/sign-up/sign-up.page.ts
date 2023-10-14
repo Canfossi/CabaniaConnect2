@@ -77,10 +77,11 @@ export class SignUpPage implements OnInit {
 
     this.firebaseSvc.setDocument(path,this.form.value).then(async res=>{
 
-      this.utilsSvc.saveInLocalStorage('user',this.form.value)
-
-      await this.firebaseSvc.updateUser(this.form.value.name);
-      console.log(res);
+      this.utilsSvc.saveInLocalStorage('user',this.form.value);
+      this.utilsSvc.routeLink('/main/home');
+      this.form.reset();
+      /*await this.firebaseSvc.updateUser(this.form.value.name);
+      console.log(res);*/
 
     }).catch(error=>{
       console.log(error)

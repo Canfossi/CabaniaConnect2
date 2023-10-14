@@ -39,12 +39,17 @@ this.form.controls.image.setValue(DataUrl);
 
 async submit(){
 
-  let path=`users/${this.user.uid}/`
+  let path=`users/${this.user.uid}/products`
 
   if (this.form.valid) {
 
     const loading=await this.utilsSvc.loading();
     await loading.present();
+    //=============subir la imagen y obtener la url
+    let dataUrl=this.form.value.image;
+    let imagePath=`${this.user.uid}/${Date.now()}`;
+    let imageUrl=await this.firebaseSvc.uploadImage(imagePath,dataUrl);
+
 
   this.firebaseSvc.signUp(this.form.value as User).then(async res=>{
 

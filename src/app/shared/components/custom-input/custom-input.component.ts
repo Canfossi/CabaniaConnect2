@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-custom-input',
@@ -7,8 +8,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomInputComponent  implements OnInit {
 
+  @Input() control!: FormControl;//este es el error 
+  @Input() type!: string;
+  @Input() label!: string;
+  @Input() autoComplete!: string;
+  @Input() icon!: string; 
+
+
+  isPassword!:boolean;
+  hide:boolean=true;
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.type=='password')this.isPassword=true; 
+      
+    
+
+  }
+
+
+    showOrHidePassword(){
+      this.hide=!this.hide;
+
+      if (this.hide)this.type="password" 
+        else this.type='text';
+      
+    }
 
 }

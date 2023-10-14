@@ -1,5 +1,29 @@
-
 <app-header title="Login"></app-header>
+
 <ion-content >
+
+  <form [formGroup]="form">
+
+    <app-custom-input  
+    autoComplete="email"
+    icon="mail-outline"
+    [control]= "form.controls.email"
+    type="email"
+    label="Correo"
+    ></app-custom-input>
+
   
+  <app-custom-input  
+  [control]="form.controls.password"
+  icon="lock-closed-outline"
+  type="password"
+  label="contraseña"
+  ></app-custom-input>
+    
+
+  </form>
+
+
+
+
 </ion-content>

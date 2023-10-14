@@ -1,6 +1,6 @@
 import { Component, OnInit,inject } from '@angular/core';
 import { FormControl,  FormGroup,  Validators } from '@angular/forms';
-import { User } from 'src/app/models/user.mode';
+import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
@@ -49,14 +49,24 @@ async submit(){
     let dataUrl=this.form.value.image;
     let imagePath=`${this.user.uid}/${Date.now()}`;
     let imageUrl=await this.firebaseSvc.uploadImage(imagePath,dataUrl);
+    this.form.controls.image.setValue(imageUrl);
+
+    delete this.form.value.id
 
 
-  this.firebaseSvc.signUp(this.form.value as User).then(async res=>{
+    this.firebaseSvc.addDocument(path,this.form.value).then(async res=>{
 
-    await this.firebaseSvc.updateUser(this.form.value.name);
+      this.utilsSvc.dismissModal({success:true});
 
-    let uid=res.user.uid;
-   
+
+    this.utilsSvc.presentToast({
+
+      message: "producto agregado exitosamente",
+      duration: 1500,
+      color:'success',
+      position:'middle',
+      icon:'checkmark-circle-outline'
+  })
 
    
 

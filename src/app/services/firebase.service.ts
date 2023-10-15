@@ -60,10 +60,10 @@ export class FirebaseService {
 
    //========================base de datos======================
 
-   //===========obtener documentos de una coleccion==========
+   //===========obtener documentos de una coleccion========== Aqui esta la falla estoy seguro
    getCollectionData(path: string, collectionQuery?: any){
       const ref = collection(getFirestore(), path);
-      return collectionData(query(ref, collectionQuery),{idField:'id'});
+      return collectionData(query(ref, collectionQuery));
 
    }
 

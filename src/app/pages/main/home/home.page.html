@@ -3,7 +3,7 @@
 
 <ion-content>
 <!--============================productos==========================-->
-      <ion-list * ngIf="!loading">
+      <ion-list *ngIf="!loading">
         <ion-item-sliding class="product-item" *ngFor="let p of products">
           <ion-item>
 
@@ -69,17 +69,19 @@
             </ion-label>
           </ion-item>
 
-      <div  *ngIf="!loading && products.length===0" class="empty">
+          <!--========================================================================-->
+      
+      </ion-list>
+
+      sin prodcutos disponible
+      
+
+      <div  *ngIf="!loading && !products.length" class="empty">
         <ion-icon  name="shield-outline"></ion-icon>
         <h3>no hay producto  disponible</h3>
 
       </div>
-
-          <!--========================================================================-->
-        
-
-      
-      </ion-list>
+    
 
 
       <!--==================nuevo Producto=========================-->

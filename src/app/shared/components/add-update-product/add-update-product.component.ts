@@ -55,6 +55,11 @@ this.form.controls.image.setValue(DataUrl);
     
   }
 
+//=============convertir string en number=====================
+setNumberInputs(){
+  
+}
+
 //sirve para crear un producto
 async createProduct(){
 

@@ -66,7 +66,7 @@ export class FirebaseService {
 
       const ref = collection(getFirestore(), path);
 
-      return collectionData(query(ref,collectionQuery),{idField:'id'});//=====consultar por que el ref con 
+      return collectionData(query(ref,...collectionQuery),{idField:'id'});//=====consultar por que el ref con 
 
    }
 

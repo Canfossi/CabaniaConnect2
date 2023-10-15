@@ -32,7 +32,7 @@ utilsSvc=inject(UtilsService);
 
     let path=`users/${user.uid}`
 
-    const loading=await this.utilsSvc.loading();
+    const loading = await this.utilsSvc.loading();
 
     await loading.present();
 
@@ -42,7 +42,7 @@ utilsSvc=inject(UtilsService);
     user.image=await this.firebaseSvc.uploadImage(imagePath,dataUrl);
 
     
-    this.firebaseSvc.updateDocument(path,{Image: user.image}).then(async res=>{
+    this.firebaseSvc.updateDocument(path,{image: user.image}).then(async res=>{
 
       this.utilsSvc.saveInLocalStorage('user',user);
   

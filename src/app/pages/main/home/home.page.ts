@@ -52,12 +52,17 @@ export class HomePage implements OnInit {
 
   //==================agregar o actulizar producto==============
 // el signo de interogacion(?) se utiliza cuando un parametro no es requerido
-  addUpdateProduct(product?: Product){//recibe un producto en caso de que se necesite editarlo y que va a recibir un producto
+   async addUpdateProduct(product?: Product){//recibe un producto en caso de que se necesite editarlo y que va a recibir un producto
 
-    this.utilsSvc.presentModal({
+   let success=await this.utilsSvc.presentModal({
       component: AddUpdateProductComponent,
       cssClass: 'add-update-modal',
       componentProps:{product}
     })
+
+    if (success) this.getProducts();
+      
+    
+
   }
 }

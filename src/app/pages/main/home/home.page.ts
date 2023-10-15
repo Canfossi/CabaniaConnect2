@@ -20,11 +20,12 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
   }
-
+//==============retornando los datos del usuario=========================
   user(): User
   {
     return this.utilsSvc.getFromLocalStorage('user');
   }
+//ejecutar una accion cada vesx que usuario entra en la pagina 
 
   ionViewWillEnter(){
 
@@ -35,7 +36,7 @@ export class HomePage implements OnInit {
 
   //==============obtener producto===========
  getProducts(){
-    let path=`users/${this.user().uid}/products`
+    let path=`users/${this.user().uid}/products`;
 
     let sub = this.firebaseSvc.getCollectionData(path).subscribe({
     next: (res:any)=>{

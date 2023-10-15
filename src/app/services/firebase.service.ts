@@ -3,7 +3,7 @@ import{AngularFireAuth}from '@angular/fire/compat/auth';
 import{getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword,updateProfile,sendPasswordResetEmail}from'firebase/auth';
 import { User } from '../models/user.model';
 import{ AngularFirestore }from '@angular/fire/compat/firestore';
-import{getFirestore,setDoc,doc,getDoc,addDoc,collection,query,collectionData}from '@angular/fire/firestore';
+import{getFirestore,setDoc,doc,getDoc,addDoc,collection,collectionData,query,updateDoc}from '@angular/fire/firestore';
 import { UtilsService } from './utils.service';
 import{AngularFireStorage}from '@angular/fire/compat/storage';
 import{getStorage, uploadString, ref, getDownloadURL}from"firebase/storage";
@@ -73,6 +73,11 @@ export class FirebaseService {
    //============setear document se utiliza en un principio para guardar los datos de un usuario ================
    setDocument(path:string,data:any){
     return setDoc(doc(getFirestore(),path),data);
+   }
+
+   //============actualizar document se utiliza en un principio para guardar los datos de un usuario ================
+   updateDocument(path:string,data:any){
+    return updateDoc(doc(getFirestore(),path),data);
    }
 
    //===========obtener un documento================

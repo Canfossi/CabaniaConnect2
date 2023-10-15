@@ -20,8 +20,8 @@ export class AddUpdateProductComponent  implements OnInit {
     id: new FormControl(''),
     image: new FormControl('',[Validators.required]),
     name: new FormControl('',[Validators.required,Validators.minLength(4)]),
-    price: new FormControl('',[Validators.required,Validators.min(0)]),
-    soldUnits: new FormControl('',[Validators.required,Validators.min(0)]),
+    price: new FormControl(null,[Validators.required,Validators.min(0)]),
+    soldUnits: new FormControl(null,[Validators.required,Validators.min(0)]),
 })
 
 firebaseSvc = inject (FirebaseService);
@@ -31,6 +31,9 @@ user={} as User;
 
 ngOnInit() {
   this.user=this.utilsSvc.getFromLocalStorage('user');
+  if (this.product) this.form.setValue(this.product); 
+    
+  
 }
 
 
@@ -122,9 +125,9 @@ async updateProduct(){
     const loading=await this.utilsSvc.loading();
 
     await loading.present();
-    //=============subir la imagen y obtener la url
+    //=============que si cambio la imagen ,subir la imagen y obtener la url========================
 
-    if (this.form.value.image!==this.product.image) {
+    if (this.form.value.image !==this.product.image) {
       let dataUrl=this.form.value.image;
       let imagePath = await this.firebaseSvc.getfilePath(this.product.image);
       let imageUrl = await this.firebaseSvc.uploadImage(imagePath,dataUrl);
@@ -136,7 +139,7 @@ async updateProduct(){
     delete this.form.value.id
 
 
-    this.firebaseSvc.addDocument(path,this.form.value).then(async res=>{
+    this.firebaseSvc.updateDocument(path,this.form.value).then(async res=>{
 
     this.utilsSvc.dismissModal({success:true});
 

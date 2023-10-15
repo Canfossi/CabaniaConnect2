@@ -15,12 +15,12 @@
             <ion-label>
               <div class="name">{{p.name}}</div>
               <div class="data">
-                <strong>Precio:</strong>{{p.price | currency:'USD'}} <br>
+                <strong>Precio:</strong>{{p.price | currency:'CLP'}} <br>
                 <strong>Dias Arrendados: </strong>{{p.soldUnits}}
               </div>
 
               <ion-chip color="primary" mode="ios" outline="true">
-                <ion-label>Ganacia:{{p.price * p.soldUnits| currency:'USD'}}</ion-label>
+                <ion-label>Ganacia:{{p.price * p.soldUnits| currency:'CLP'}}</ion-label>
               </ion-chip>
 
 
@@ -36,7 +36,7 @@
             </ion-item-option>
         
           <!--================================eliminar========================================-->
-            <ion-item-option  (click)="confirmDeleteProduct(p)" color="danger" >
+            <ion-item-option  (click)="deleteProduct(p)" color="danger" >
               <ion-icon  class="option-btn" name="trash-outline"></ion-icon>
             </ion-item-option>
 
@@ -73,7 +73,7 @@
       
       </ion-list>
 
-      sin prodcutos disponible
+      
       
 
       <div  *ngIf="!loading && !products.length" class="empty">

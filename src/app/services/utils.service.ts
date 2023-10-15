@@ -11,7 +11,7 @@ export class UtilsService {
 loadingCtrl=inject(LoadingController);
 toastCtrl = inject(ToastController);
 modalCtrl=inject(ModalController);
-router = inject(Router);
+router = inject(Router)
 alertCtrl = inject(AlertController)
 
 //=====================servicio de camara ===================================

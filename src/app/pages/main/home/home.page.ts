@@ -81,22 +81,23 @@ export class HomePage implements OnInit {
 //===============confirmar  la elimiancion del producto
 
    async confirmDeleteProduct(product:Product) {
-   this.utilsSvc.presentAlert({
-      header: 'eliminar producto!',
-      message: 'quieres eliminar este producto',
-      mode:'ios',
-      buttons: [
-        {
-          text: 'Cancel',
-          
-        }, {
-          text: 'SI, eliminar',
-          handler: () => {
-            this.deleteProduct(product);
-          }
-        }
-      ]
-    });
+
+      this.utilsSvc.presentAlert({
+          header: 'eliminar producto!',
+          message: 'quieres eliminar este producto',
+          mode:'ios',
+          buttons: [
+            {
+              text: 'Cancel',
+              
+            }, {
+              text: 'SI, eliminar',
+              handler: () => {
+                this.deleteProduct(product)
+              }
+            }
+          ]
+        });
   
   
   }
@@ -106,8 +107,6 @@ export class HomePage implements OnInit {
 
 
 async deleteProduct(product:Product){
-
-  
 
   let path=`users/${this.user().uid}/products/${product.id}`
 
@@ -122,20 +121,18 @@ async deleteProduct(product:Product){
 
   this.products =this.products.filter(p=> p.id !==product.id);
 
-  this.utilsSvc.presentToast({
+      this.utilsSvc.presentToast({
 
-    message: "producto eliminado exitosamente",
-    duration: 1500,
-    color:'success',
-    position:'middle',
-    icon:'checkmark-circle-outline'
+        message: "producto eliminado exitosamente",
+        duration: 1500,
+        color:'success',
+        position:'middle',
+        icon:'checkmark-circle-outline'
+    })
+
 })
 
- 
-
-  
-
-}).catch(error=>{
+.catch(error=>{
   console.log(error)
 
   this.utilsSvc.presentToast({

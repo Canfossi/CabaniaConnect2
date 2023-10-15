@@ -35,16 +35,16 @@ export class HomePage implements OnInit {
  
 
   //==============obtener producto===========
- getProducts(){
-    let path=`users/${this.user().uid}/products`;
+  getProducts(){
+      let path=`users/${this.user().uid}/products`;
 
-    let sub = this.firebaseSvc.getCollectionData(path).subscribe({
-    next: (res:any)=>{
-      console.log(res);
-      this.products=res;
-      sub.unsubscribe();
-    }
-  })
+      let sub = this.firebaseSvc.getCollectionData(path).subscribe({
+      next: (res:any)=>{
+        console.log(res);
+        this.products=res;
+        sub.unsubscribe();
+      }
+    })
  }
 
   

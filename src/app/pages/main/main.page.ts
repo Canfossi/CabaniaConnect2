@@ -1,6 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { title } from 'process';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-main',
@@ -14,6 +16,9 @@ export class MainPage implements OnInit {
   {title:'Perfil',url: '/main/profile',icon:'person-outline'},]
    
     router = inject(Router);
+    firebaseSvc=inject(FirebaseService);
+    utilsSvc = inject(UtilsService);
+
     currentPath: string='';
   
   constructor() { }
@@ -24,6 +29,12 @@ export class MainPage implements OnInit {
 
     })
 
+  }
+
+  //==============cerrar Sesion================
+  signOut(){
+
+    this.firebaseSvc.signOut();
   }
 
 }

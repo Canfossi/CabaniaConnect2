@@ -15,7 +15,6 @@ import{orderBy}from 'firebase/firestore';
 export class HomePage implements OnInit {
 
   firebaseSvc=inject(FirebaseService);
-
   utilsSvc = inject(UtilsService);
 
   products: Product [] = [];

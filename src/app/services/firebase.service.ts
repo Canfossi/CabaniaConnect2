@@ -95,4 +95,12 @@ export class FirebaseService {
         })
 
      }
+
+    //==============obtener ruta de la imagen con su url================================
+     async getfilePath(url:string){
+      //con esta funcion puedo saber donde esta la imagen por su URL
+      return ref(getStorage(),url).fullPath
+
+     }
+
 }

@@ -41,15 +41,21 @@ this.form.controls.image.setValue(DataUrl);
 
 }
 
-    submit(){
-
+  submit(){
+    if (this.form.valid) {
+      //que si existe el producto significaque estoy actualizando
+      if (this.product) this.updateProduct ();
+      //sino significa que esto creando
+      else this.createProduct()
       
     }
+    
+  }
 
 //sirve para crear un producto
 async createProduct(){
 
-  if (this.form.valid) {
+  
 
     let path=`users/${this.user.uid}/products`
 
@@ -99,7 +105,7 @@ async createProduct(){
     }).finally(()=>{
       loading.dismiss();
     })
-  }
+  
   
 }
 
@@ -109,30 +115,34 @@ async createProduct(){
 
 async updateProduct(){
 
-  if (this.form.valid) {
+  
 
-    let path=`users/${this.user.uid}/products`
+    let path=`users/${this.user.uid}/products/${this.product.id}`
 
     const loading=await this.utilsSvc.loading();
 
     await loading.present();
     //=============subir la imagen y obtener la url
-    let dataUrl=this.form.value.image;
-    let imagePath=`${this.user.uid}/${Date.now()}`;
-    let imageUrl=await this.firebaseSvc.uploadImage(imagePath,dataUrl);
-    this.form.controls.image.setValue(imageUrl);
+
+    if (this.form.value.image!==this.product.image) {
+      let dataUrl=this.form.value.image;
+      let imagePath = await this.firebaseSvc.getfilePath(this.product.image);
+      let imageUrl = await this.firebaseSvc.uploadImage(imagePath,dataUrl);
+      this.form.controls.image.setValue(imageUrl);
+    }
+
+ 
 
     delete this.form.value.id
 
 
     this.firebaseSvc.addDocument(path,this.form.value).then(async res=>{
 
-      this.utilsSvc.dismissModal({success:true});
-
+    this.utilsSvc.dismissModal({success:true});
 
     this.utilsSvc.presentToast({
 
-      message: "producto agregado exitosamente",
+      message: "producto actualizado exitosamente",
       duration: 1500,
       color:'success',
       position:'middle',
@@ -159,7 +169,7 @@ async updateProduct(){
     }).finally(()=>{
       loading.dismiss();
     })
-  }
+  
   
 }
 

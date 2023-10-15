@@ -39,8 +39,8 @@ ngOnInit() {
 
 //==================tomar/seleccionar imagen========================
 async takeImage(){
-const DataUrl=(await this.utilsSvc.takePicture('imagen del producto')).dataUrl;
-this.form.controls.image.setValue(DataUrl);
+const dataUrl=(await this.utilsSvc.takePicture('imagen del producto')).dataUrl;
+this.form.controls.image.setValue(dataUrl);
 
 }
 
@@ -98,12 +98,9 @@ async createProduct(){
       icon:'checkmark-circle-outline'
   })
 
-   
-
-    
 
   }).catch(error=>{
-    console.log(error)
+    console.log(error);
 
     this.utilsSvc.presentToast({
 
@@ -162,6 +159,9 @@ async updateProduct(){
       icon:'checkmark-circle-outline'
   })
 
+   
+
+    
 
   }).catch(error=>{
     console.log(error)

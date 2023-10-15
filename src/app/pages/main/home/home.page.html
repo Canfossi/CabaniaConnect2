@@ -16,6 +16,13 @@
           <strong>Precio:</strong>{{p.price | currency:'USD'}} <br>
           <strong>Dias Arrendados: </strong>{{p.soldUnits}}
         </div>
+
+        <ion-chip color="primary" mode="ios" outline="true">
+          <ion-label>Ganacia:{{p.price * p.soldUnits| currency:'USD'}}</ion-label>
+        </ion-chip>
+
+
+
       </ion-label>
     </ion-item>
 

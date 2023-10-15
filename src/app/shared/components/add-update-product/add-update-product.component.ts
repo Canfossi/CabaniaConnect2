@@ -44,7 +44,7 @@ this.form.controls.image.setValue(DataUrl);
 
 }
 
-  submit(){
+submit(){
     if (this.form.valid) {
       //que si existe el producto significaque estoy actualizando
       if (this.product) this.updateProduct ();
@@ -162,9 +162,6 @@ async updateProduct(){
       icon:'checkmark-circle-outline'
   })
 
-   
-
-    
 
   }).catch(error=>{
     console.log(error)

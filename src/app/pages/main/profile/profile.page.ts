@@ -24,41 +24,36 @@ utilsSvc=inject(UtilsService);
     return this.utilsSvc.getFromLocalStorage('user');
   }
 
-
+//===================================================================
 
   async takeImage(){
 
-    
     let user =this.user();
+
     let path=`users/${user.uid}`
 
     const loading=await this.utilsSvc.loading();
 
     await loading.present();
 
-   
+
     const dataUrl=(await this.utilsSvc.takePicture('imagen del perfil')).dataUrl;
-   
     let imagePath=`${user.uid}/profile`;
     user.image=await this.firebaseSvc.uploadImage(imagePath,dataUrl);
 
+    
+    this.firebaseSvc.updateDocument(path,{Image: user.image}).then(async res=>{
 
-    this.firebaseSvc.updateDocument(path,{image: user.image}).then(async res=>{
-
-      this.utilsSvc.dismissModal({success:true});
+      this.utilsSvc.saveInLocalStorage('user',user);
   
       this.utilsSvc.presentToast({
-  
-        message: "producto actualizado exitosamente",
+        message: "imagen actualizada exitosamente",
         duration: 1500,
         color:'success',
         position:'middle',
         icon:'checkmark-circle-outline'
     })
   
-     
-  
-      
   
     }).catch(error=>{
       console.log(error)
@@ -77,6 +72,7 @@ utilsSvc=inject(UtilsService);
         loading.dismiss();
       })
 
-    }
+
+  }
 
 }

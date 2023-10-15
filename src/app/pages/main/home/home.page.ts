@@ -1,4 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { flatMap } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
 import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
@@ -17,6 +18,7 @@ export class HomePage implements OnInit {
   utilsSvc = inject(UtilsService);
 
   products: Product [] = [];
+  loading: boolean=false;
 
   ngOnInit() {
   }
@@ -38,10 +40,16 @@ export class HomePage implements OnInit {
   getProducts(){
       let path=`users/${this.user().uid}/products`;
 
+      this.loading =true;
+
       let sub = this.firebaseSvc.getCollectionData(path).subscribe({
       next: (res:any)=>{
         console.log(res);
-        this.products=res;
+        //this.products=res;
+
+          this.loading =false;
+
+
         sub.unsubscribe();
       }
     })
@@ -65,6 +73,28 @@ export class HomePage implements OnInit {
     
 
   }
+//===============confirmar  la elimiancion del producto
+
+   async confirmDeleteProduct(product:Product) {
+   this.utilsSvc.presentAlert({
+      header: 'eliminar producto!',
+      message: 'quieres eliminar este producto',
+      mode:'ios',
+      buttons: [
+        {
+          text: 'Cancel',
+          
+        }, {
+          text: 'SI, eliminar',
+          handler: () => {
+            this.deleteProduct(product);
+          }
+        }
+      ]
+    });
+  
+  
+  }
 
 
   //===============================eliminar un producto=========================================
@@ -81,10 +111,11 @@ async deleteProduct(product:Product){
   await loading.present();
 
   let imagePath = await this.firebaseSvc.getfilePath(product.image);
+  await this.firebaseSvc.deleteFile(imagePath);
 
   this.firebaseSvc.deleteDocument(path).then(async res=>{
 
-  
+  this.products =this.products.filter(p=> p.id !==product.id);
 
   this.utilsSvc.presentToast({
 

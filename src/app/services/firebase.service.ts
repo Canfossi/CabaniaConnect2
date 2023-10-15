@@ -6,7 +6,7 @@ import{ AngularFirestore }from '@angular/fire/compat/firestore';
 import{getFirestore,setDoc,doc,getDoc,addDoc,collection,collectionData,query,updateDoc,deleteDoc}from '@angular/fire/firestore';
 import { UtilsService } from './utils.service';
 import{AngularFireStorage}from '@angular/fire/compat/storage';
-import{getStorage, uploadString, ref, getDownloadURL}from"firebase/storage";
+import{getStorage, uploadString, ref, getDownloadURL,deleteObject}from"firebase/storage";
 
 
 @Injectable({
@@ -110,6 +110,11 @@ export class FirebaseService {
      async getfilePath(url:string){
       //con esta funcion puedo saber donde esta la imagen por su URL
       return ref(getStorage(),url).fullPath
+
+     }
+      //================eliminar archivo==========================
+     deleteFile(path:string){
+      return deleteObject(ref(getStorage(),path));
 
      }
 

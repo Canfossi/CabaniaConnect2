@@ -41,6 +41,12 @@ export class HomePage implements OnInit {
       event.target.complete();
     }, 1000);
   }
+
+  //==========obtener las ganacias =============
+  getProfits(){
+    return this.products.reduce((index, product)=> index + product.price * product.soldUnits, 0);
+
+  }
  
 
   //==============obtener producto===========

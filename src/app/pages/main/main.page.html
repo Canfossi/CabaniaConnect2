@@ -3,7 +3,11 @@
 <app-header title="Menu"></app-header>
 
 
-  <ion-content>
+  <ion-content class="ion-text-center">
+    <ion-icon name="person-circle-outline"></ion-icon>
+
+      <h4>{{user()?.name}}</h4>
+      
     <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
       <ion-item  [ngClass]="{'active': currentPath ===p.url}" [routerLink]="p.url" routerrouterDirection=rootdetail>
         <ion-icon slot="start" [name]="p.icon"></ion-icon>
@@ -15,7 +19,7 @@
 
   <ion-footer class="ion-no-border safe-p-bottom">
     <ion-menu-toggle auto-hide="false" >
-      <ion-item lines="none">
+      <ion-item (click)="signOut()"lines="none">
         <ion-icon slot="start" name="log-out-outline"></ion-icon>
         <ion-label>Cerrar Sesion</ion-label>
       </ion-item>

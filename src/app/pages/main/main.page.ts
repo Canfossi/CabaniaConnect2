@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { title } from 'process';
+import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
@@ -31,6 +32,11 @@ export class MainPage implements OnInit {
 
   }
 
+
+  user(): User
+  {
+    return this.utilsSvc.getFromLocalStorage('user');
+  }
   //==============cerrar Sesion================
   signOut(){
 

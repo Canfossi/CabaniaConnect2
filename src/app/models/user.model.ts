@@ -7,5 +7,7 @@ export interface User{
 
     password: string,
 
-    name: string
+    name: string,
+    
+    image:string
 }

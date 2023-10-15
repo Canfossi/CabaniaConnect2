@@ -1,5 +1,6 @@
 import { Component, Input, OnInit,inject } from '@angular/core';
 import { FormControl,  FormGroup,  Validators } from '@angular/forms';
+import { parse } from 'path';
 import { Product } from 'src/app/models/product.model';
 import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
@@ -57,6 +58,11 @@ this.form.controls.image.setValue(DataUrl);
 
 //=============convertir string en number=====================
 setNumberInputs(){
+
+  let {soldUnits,price}=this.form.controls;
+
+  if (soldUnits.value)soldUnits.setValue(parseFloat(soldUnits.value)); 
+  if (price.value)price.setValue(parseFloat(price.value)); 
   
 }
 

@@ -43,6 +43,7 @@
             [control]= "form.controls.price"
             type="number"
             label="Precio"
+            (ionInput)="setNumberInputs()"
             ></app-custom-input>
 
         <div class="validators " *ngIf="form.controls.price.errors && form.controls.price.touched">
@@ -60,6 +61,7 @@
         [control]= "form.controls.soldUnits"
         type="number"
         label="dias arrendadas"
+        (ionInput)="setNumberInputs()"
         ></app-custom-input>
 
     <div class="validators " *ngIf="form.controls.soldUnits.errors && form.controls.soldUnits.touched">

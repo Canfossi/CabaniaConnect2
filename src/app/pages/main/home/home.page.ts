@@ -34,7 +34,13 @@ export class HomePage implements OnInit {
 
     this.getProducts();
   }
-
+  //refrescar 
+  doRefresh(event) {
+    setTimeout(() => {
+    this.getProducts();
+      event.target.complete();
+    }, 1000);
+  }
  
 
   //==============obtener producto===========

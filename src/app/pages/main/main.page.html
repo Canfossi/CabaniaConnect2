@@ -1,11 +1,11 @@
 <ion-menu contentId="menu-content" menuId="menu-content" side="start" >
 
-
+<app-header title="Menu"></app-header>
 
 
   <ion-content>
     <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
-      <ion-item [routerLink]="p.url" routerrouterDirection=rootdetail>
+      <ion-item  [ngClass]="{'active': currentPath ===p.url}" [routerLink]="p.url" routerrouterDirection=rootdetail>
         <ion-icon slot="start" [name]="p.icon"></ion-icon>
         <ion-label>{{p.title}}</ion-label>
       </ion-item>
@@ -13,4 +13,4 @@
     
   </ion-content>
 </ion-menu>
- i <ion-router-outlet id="menu-content" main></ion-router-outlet>
+  <ion-router-outlet id="menu-content" main></ion-router-outlet>

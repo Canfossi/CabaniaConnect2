@@ -24,25 +24,23 @@ utilsSvc=inject(UtilsService);
     return this.utilsSvc.getFromLocalStorage('user');
   }
 
-//===================================================================
+//==============================tomar /seleccionar imagen=====================================
 
   async takeImage(){
 
-    let user =this.user();
+    let user = this.user();
+    let path = `users/${user.uid}`
 
-    let path=`users/${user.uid}`
-
+    const dataUrl=(await this.utilsSvc.takePicture('imagen del perfil')).dataUrl;
     const loading = await this.utilsSvc.loading();
 
     await loading.present();
 
-
-    const dataUrl=(await this.utilsSvc.takePicture('imagen del perfil')).dataUrl;
-    let imagePath=`${user.uid}/profile`;
-    user.image=await this.firebaseSvc.uploadImage(imagePath,dataUrl);
+    let imagePath = `${user.uid}/profile`;
+    user.image = await this.firebaseSvc.uploadImage(imagePath, dataUrl);
 
     
-    this.firebaseSvc.updateDocument(path,{image: user.image}).then(async res=>{
+    this.firebaseSvc.updateDocument(path,  {image: user.image }).then(async res=>{
 
       this.utilsSvc.saveInLocalStorage('user',user);
   
@@ -56,7 +54,7 @@ utilsSvc=inject(UtilsService);
   
   
     }).catch(error=>{
-      console.log(error)
+      console.log(error);
   
       this.utilsSvc.presentToast({
   
@@ -68,9 +66,11 @@ utilsSvc=inject(UtilsService);
       })
   
   
-      }).finally(()=>{
-        loading.dismiss();
       })
+      
+    .finally(()=>{
+      loading.dismiss();
+    })
 
 
   }

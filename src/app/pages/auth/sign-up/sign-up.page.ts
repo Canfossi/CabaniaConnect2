@@ -51,6 +51,7 @@ export class SignUpPage implements OnInit {
           message: error.message,
           duration: 2500,
           color:'primary',
+          
           position:'middle',
           icon:'alert-circle-outline'
       })

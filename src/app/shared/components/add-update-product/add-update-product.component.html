@@ -1,6 +1,6 @@
 
 <!-- que si prodcuto existe  entonce mostrar actualizar prodcuto y si no agregar prodcuto-->
-<app-header [isModal]="true" [title]="product ? 'actualizar Producto ': 'agregar Producto'"></app-header>
+<app-header [isModal]="true" [title]="product ? 'actualizar Cabañas ': 'agregar Producto'"></app-header>
 <ion-content>
     <form [formGroup]="form" class="ion-padding ion-text-center"(ngSubmit)="submit()"(keypress.enter)="submit">
         <!--========================si existe una imagen================================-->
@@ -76,7 +76,7 @@
          
     
           <ion-button   mode="ios" class="ion-margin" type="submit" [disabled]="form.invalid">
-            {{product ? 'actualizar Producto ': 'agregar Producto'}}
+            {{product ? 'Actualizar Cabaña ': 'agregar Producto'}}
             <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
           </ion-button>
     

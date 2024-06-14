@@ -66,10 +66,9 @@ return this.router.navigateByUrl(url);
 
 //============================obtine un elemento del localstorage==============================
 
-getFromLocalStorage(key:string){
-return  JSON.parse(localStorage.getItem(key));
-
-}
+getFromLocalStorage(key: string) {
+  return JSON.parse(localStorage.getItem(key) as string)
+  }
 
 //====================modal===========================
 async presentModal(opts: ModalOptions) {

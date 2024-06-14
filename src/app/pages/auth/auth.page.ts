@@ -1,5 +1,6 @@
 import { Component, OnInit,inject } from '@angular/core';
 import { FormControl,  FormGroup,  Validators } from '@angular/forms';
+import { log } from 'console';
 import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -68,7 +69,8 @@ export class AuthPage implements OnInit {
         delete this.form.value.password;
 
     this.firebaseSvc.getDocument(path).then((user:User)=>{
-
+      console.log(user);
+      
       this.utilsSvc.saveInLocalStorage('user',user);
       this.utilsSvc.routeLink('/main/home');
       this.form.reset();

@@ -4,15 +4,16 @@
 
 export const environment = {
   production: false,
-  firebaseConfig : {
-    apiKey: "AIzaSyBu9mFZKM3wb_K5wngS7Vk6--zRz312Jfg",
-    authDomain: "cabania-admin-app.firebaseapp.com",
-    projectId: "cabania-admin-app",
-    storageBucket: "cabania-admin-app.appspot.com",
-    messagingSenderId: "267515628436",
-    appId: "1:267515628436:web:b64fc566d08e2254939d81"
-  }
   
+  firebaseConfig : {
+    apiKey: "AIzaSyC4mEJ2Cig-h0L5lFM3GbVdMWppiLIz2Mk",
+    authDomain: "condominioconnect-92c24.firebaseapp.com",
+    projectId: "condominioconnect-92c24",
+    storageBucket: "condominioconnect-92c24.appspot.com",
+    messagingSenderId: "723672628200",
+    appId: "1:723672628200:web:e57897f6bdcd569f17425d",
+    measurementId: "G-RENXX5BR7L"
+  }
 };
 
 /*

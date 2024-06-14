@@ -13,12 +13,12 @@
     <ion-card mode="ios" color="secondary" class="d-flex-center ion-text-center" *ngIf="!loading && products.length">
       <div>
         <h5>{{products.length}}</h5>
-        <p>Cabañias</p>
+        <p>Reservas</p>
       </div>
       <!--============================================-->
       <div>
         <h5>{{ getProfits()| currency:'CLP'}}</h5>
-        <p>Ganacia</p>
+        <p>Garantia</p>
       </div>
 
     </ion-card>
@@ -41,7 +41,7 @@
               </div>
 
               <ion-chip color="primary" mode="ios" outline="true">
-                <ion-label>Ganacia:{{p.price * p.soldUnits| currency:'CLP'}}</ion-label>
+                <ion-label>Garantia:{{p.price * p.soldUnits| currency:'CLP'}}</ion-label>
               </ion-chip>
 
 
